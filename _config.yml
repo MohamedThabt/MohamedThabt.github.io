@@ -9,40 +9,43 @@ theme: jekyll-theme-chirpy
 lang: en
 
 # Change to your timezone › https://kevinnovak.github.io/Time-Zone-Picker
-timezone:
+timezone: Africa/Cairo
 
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: Chirpy # the main title
+title: Mohamed Thabet # the main title
 
-tagline: A text-focused Jekyll theme # it will display as the subtitle
+tagline: "Backend Engineer" # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
-  A minimal, responsive and feature-rich Jekyll theme for technical writing.
-
+  Mohamed Thabet's personal site showcasing backend engineering projects, technical articles, 
+  and professional experience in software development. Sharing insights about system architecture, 
+  API development, and backend technologies.
 # Fill in the protocol & hostname for your site.
-# E.g. 'https://MohamedThabet.github.io', note that it does not end with a '/'.
-url: "https://MohamedThabet.github.io"
+# E.g. 'https://username.github.io', note that it does not end with a '/'.
+url: "https://MohamedThabt.github.io"
 
 github:
-  username: github_username # change to your GitHub username
+  username: MohamedThabt # change to your GitHub username
 
 twitter:
-  username: twitter_username # change to your Twitter username
+  username: Mohamed13546660 # change to your Twitter username
 
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
-  name: your_full_name
-  email: example@domain.com # change to your email address
+  name: Mohamed Thabet 
+  email: mohamedthabetthabet36@gmail.com # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - https://twitter.com/username # change to your Twitter homepage
-    - https://github.com/username # change to your GitHub homepage
+    - https://x.com/Mohamed13546660 # change to your Twitter homepage
+    - https://github.com/MohamedThabt # change to your GitHub homepage
     # Uncomment below to add more social links
-    # - https://www.facebook.com/username
-    # - https://www.linkedin.com/in/username
+    - https://www.facebook.com/mohamed.thabet.545
+    - https://www.linkedin.com/in/mohamed--thabet
+
+
 
 # Site Verification Settings
 webmaster_verifications:
@@ -88,7 +91,7 @@ pageviews:
 #     light — Use the light color scheme
 #     dark — Use the dark color scheme
 #
-theme_mode: # [light | dark]
+theme_mode: #[light | dark]
 
 # The CDN endpoint for media resources.
 # Notice that once it is assigned, the CDN url
@@ -98,7 +101,7 @@ theme_mode: # [light | dark]
 cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar:
+avatar: /assets/img/personal-image.jpg
 
 # The URL of the site-wide social preview image used in SEO `og:image` meta tag.
 # It can be overridden by a customized `page.image` in front matter.
@@ -152,6 +155,9 @@ paginate: 10
 # The base URL of your site
 baseurl: ""
 
+# Browser theme color
+theme_color: "#ffffff"
+
 # ------------ The following options are not recommended to be modified ------------------
 
 kramdown:
@@ -170,6 +176,9 @@ collections:
   tabs:
     output: true
     sort_by: order
+  projects:
+    output: true
+    permalink: /projects/:title/
 
 defaults:
   - scope:
@@ -192,6 +201,12 @@ defaults:
     values:
       layout: page
       permalink: /:title/
+  # Projects
+  - scope:
+      path: "_projects"
+      type: "projects"
+    values:
+      layout: post
 
 sass:
   style: compressed
