@@ -9,7 +9,10 @@ theme: jekyll-theme-chirpy
 lang: en
 
 # Change to your timezone › https://kevinnovak.github.io/Time-Zone-Picker
-timezone:
+timezone: Africa/Cairo
+
+# Add a tagline (subtitle)
+tagline: "Backend Engineer"
 
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
@@ -99,7 +102,7 @@ theme_mode: # [light | dark]
 cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar:
+avatar: /assets/img/personal-image.jpg
 
 # The URL of the site-wide social preview image used in SEO `og:image` meta tag.
 # It can be overridden by a customized `page.image` in front matter.
@@ -171,6 +174,9 @@ collections:
   tabs:
     output: true
     sort_by: order
+  projects:
+    output: true
+    permalink: /projects/:title/
 
 defaults:
   - scope:
@@ -193,6 +199,12 @@ defaults:
     values:
       layout: page
       permalink: /:title/
+  # Projects
+  - scope:
+      path: "_projects"
+      type: "projects"
+    values:
+      layout: post
 
 sass:
   style: compressed
