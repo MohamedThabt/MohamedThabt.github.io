@@ -172,6 +172,9 @@ collections:
     sort_by: order
   projects:
     output: true
+  certificates:
+    output: true
+    permalink: /certificates/:path/
 
 defaults:
   - scope:
@@ -194,8 +197,11 @@ defaults:
     values:
       layout: page
       permalink: /:title/
-        # Projects
-
+  - scope:
+      path: ""
+      type: certificates
+    values:
+      layout: certificate  # Note: Use the singular layout for individual certificates
 
 sass:
   style: compressed
