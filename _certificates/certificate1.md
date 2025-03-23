@@ -3,8 +3,8 @@ layout: certificate
 title: "Certificate Name"
 issuer: "Issuing Organization"
 date: 2023-05-15
-image: "/assets/images/certificates/certificate-thumbnail.jpg"
-certificate_url: "https://example.com/view-certificate" # Optional direct link to certificate
+image: 
+certificate_url: 
 skills:
   - Skill 1
   - Skill 2

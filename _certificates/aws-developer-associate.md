@@ -3,8 +3,8 @@ layout: certificate
 title: "AWS Certified Developer - Associate"
 issuer: "Amazon Web Services"
 date: 2023-05-15
-image: "/assets/img/certificates/placeholder.jpg"
-certificate_url: "https://example.com/certificate-link"
+image: 
+certificate_url:
 skills:
   - AWS
   - Cloud Computing
