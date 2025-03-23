@@ -1,7 +1,7 @@
 ---
 # The default layout is 'page'
-icon: fas fa-info-circle
-order: 4
+icon: fas fa-user-circle
+order: 1
 ---
 ## 👋 Hello, I'm Mohamed Thabet
 

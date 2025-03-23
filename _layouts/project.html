@@ -1,0 +1,262 @@
+---
+layout: page
+---
+
+<article class="project-content">
+  
+  <header class="project-header mb-5">
+    <h1 class="project-title">{{ page.title }}</h1>
+    
+    <!-- Project details section - moved above image -->
+    <div class="project-details mb-4">
+      {% if page.date %}
+      <div class="project-date mb-2">
+        <i class="far fa-calendar-alt me-2"></i><span class="text-muted">Project Date:</span> <strong>{{ page.date | date: "%b %Y" }}</strong>
+      </div>
+      {% endif %}
+      
+      {% if page.technologies %}
+      <div class="project-tech mb-3">
+        <div class="d-flex align-items-center mb-2">
+          <i class="fas fa-code me-2"></i><span class="text-muted">Technologies:</span>
+        </div>
+        <div class="project-meta d-flex flex-wrap gap-2">
+          {% for tech in page.technologies %}
+            <span class="badge rounded-pill bg-primary text-white">{{ tech }}</span>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+    </div>
+    
+    {% if page.image %}
+    <div class="project-featured-image my-4">
+      <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" class="rounded shadow img-fluid">
+    </div>
+    {% endif %}
+    
+    <div class="project-links d-flex flex-wrap gap-3 my-4">
+      {% if page.github_link %}
+      <a href="{{ page.github_link }}" class="btn btn-outline-dark" target="_blank">
+        <i class="fab fa-github me-2"></i> GitHub Repository
+      </a>
+      {% endif %}
+      
+      {% if page.live_link %}
+      <a href="{{ page.live_link }}" class="btn btn-primary" target="_blank">
+        <i class="fas fa-external-link-alt me-2"></i> Live Demo
+      </a>
+      {% endif %}
+      
+      {% if page.linkedin_post %}
+      <a href="{{ page.linkedin_post }}" class="btn btn-outline-primary" target="_blank">
+        <i class="fab fa-linkedin me-2"></i> LinkedIn Post
+      </a>
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="project-content article-content">
+    {{ content }}
+  </div>
+  
+  <div class="project-footer mt-5 pt-4 border-top">
+    <div class="row">
+      <div class="col-md-6">
+        {% if page.previous %}
+        <a href="{{ page.previous.url }}" class="btn btn-outline-secondary">
+          <i class="fas fa-chevron-left me-2"></i> Previous Project
+        </a>
+        {% endif %}
+      </div>
+      <div class="col-md-6 text-md-end">
+        {% if page.next %}
+        <a href="{{ page.next.url }}" class="btn btn-outline-secondary">
+          Next Project <i class="fas fa-chevron-right ms-2"></i>
+        </a>
+        {% endif %}
+      </div>
+    </div>
+    
+    <div class="share-section mt-4 pt-3 border-top">
+      <div class="share-wrapper">
+        <span class="share-label text-muted me-2">Share this project:</span>
+        <span class="share-icons">
+          {% capture title %}{{ page.title }} - {{ site.title }}{% endcapture %}
+          {% assign url = page.url | absolute_url %}
+          
+          <!-- LinkedIn Share Link -->
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ url | url_encode }}" data-toggle="tooltip" data-placement="top" title="LinkedIn" target="_blank" rel="noopener" aria-label="Share on LinkedIn" class="me-2">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          
+          <!-- Twitter Share Link -->
+          <a href="https://twitter.com/intent/tweet?text={{ title | url_encode }}&url={{ url | url_encode }}" data-toggle="tooltip" data-placement="top" title="Twitter" target="_blank" rel="noopener" aria-label="Share on Twitter" class="me-2">
+            <i class="fab fa-twitter"></i>
+          </a>
+          
+          <!-- Facebook Share Link -->
+          <a href="https://www.facebook.com/sharer/sharer.php?u={{ url | url_encode }}" data-toggle="tooltip" data-placement="top" title="Facebook" target="_blank" rel="noopener" aria-label="Share on Facebook" class="me-2">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+        </span>
+      </div>
+      
+      <div class="mt-3 text-center">
+        <a href="{{ '/projects/' | relative_url }}" class="btn btn-sm btn-outline-secondary">
+          <i class="fas fa-th me-1"></i> View All Projects
+        </a>
+      </div>
+    </div>
+  </div>
+  
+</article>
+
+<style>
+  /* Project layout styling */
+  .project-content {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  .project-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+  }
+  
+  .project-details {
+    background-color: rgba(0,0,0,0.02);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    border-left: 4px solid var(--primary-color, #007bff);
+  }
+  
+  .project-featured-image {
+    display: block;
+    overflow: hidden;
+    border-radius: 0.5rem;
+  }
+  
+  .project-featured-image img {
+    max-height: 500px;
+    width: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .project-featured-image:hover img {
+    transform: scale(1.02);
+  }
+  
+  .project-meta .badge {
+    font-size: 0.85rem;
+    padding: 0.5em 0.85em;
+    margin-bottom: 0.25rem;
+  }
+  
+  .btn {
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    transition: all 0.2s ease;
+  }
+  
+  .btn-outline-dark:hover, 
+  .btn-outline-primary:hover {
+    transform: translateY(-2px);
+  }
+  
+  .btn-primary {
+    box-shadow: 0 2px 5px rgba(0,123,255,0.2);
+  }
+  
+  .btn-primary:hover {
+    box-shadow: 0 4px 8px rgba(0,123,255,0.3);
+    transform: translateY(-2px);
+  }
+  
+  .share-wrapper {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+  
+  .share-icons a {
+    font-size: 1.2rem;
+    color: var(--text-muted, #6c757d);
+    transition: color 0.2s ease, transform 0.2s ease;
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: rgba(0,0,0,0.03);
+  }
+  
+  .share-icons a:hover {
+    color: var(--primary-color, #007bff);
+    transform: translateY(-2px);
+    background-color: rgba(0,0,0,0.05);
+  }
+  
+  /* Specific share button colors */
+  .share-icons a:hover .fa-linkedin {
+    color: #0077b5;
+  }
+  
+  .share-icons a:hover .fa-twitter {
+    color: #1da1f2;
+  }
+  
+  .share-icons a:hover .fa-facebook-f {
+    color: #4267B2;
+  }
+  
+  .share-section {
+    margin-top: 2rem;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .project-title {
+      font-size: 1.8rem;
+    }
+    
+    .project-featured-image img {
+      max-height: 350px;
+    }
+  }
+  
+  /* Light/dark mode compatibility */
+  html[data-mode="dark"] .project-details {
+    background-color: rgba(255,255,255,0.05);
+  }
+  
+  html[data-mode="dark"] .btn-outline-dark {
+    color: #dee2e6;
+    border-color: #dee2e6;
+  }
+  
+  html[data-mode="dark"] .btn-outline-dark:hover {
+    color: #212529;
+    background-color: #dee2e6;
+    border-color: #dee2e6;
+  }
+  
+  html[data-mode="dark"] .project-content h1, 
+  html[data-mode="dark"] .project-content h2, 
+  html[data-mode="dark"] .project-content h3 {
+    color: #f8f9fa;
+  }
+  
+  html[data-mode="dark"] .share-icons a {
+    background-color: rgba(255,255,255,0.05);
+  }
+  
+  html[data-mode="dark"] .share-icons a:hover {
+    background-color: rgba(255,255,255,0.1);
+  }
+</style>

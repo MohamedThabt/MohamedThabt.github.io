@@ -10,9 +10,7 @@
   icon: "fas fa-envelope"
   noblank: true # open link in current tab
 
-- type: rss
-  icon: "fas fa-rss"
-  noblank: true
+
 # Uncomment and complete the url below to enable more contact options
 #
 # - type: mastodon
@@ -23,9 +21,6 @@
   icon: 'fab fa-linkedin'   # icons powered by <https://fontawesome.com/>
   url:  'https://www.linkedin.com/in/mohamed--thabet'                  # Fill with your Linkedin homepage
   
-- type: facebook
-  icon: 'fab fa-facebook'   # icons powered by <https://fontawesome.com/>
-  url:  'https://www.facebook.com/mohamed.thabet.545'                # Fill with your Linkedin homepage
 #
 # - type: stack-overflow
 #   icon: 'fab fa-stack-overflow'
