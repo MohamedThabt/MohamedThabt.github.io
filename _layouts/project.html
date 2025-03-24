@@ -37,7 +37,7 @@ layout: page
     
     <div class="project-links d-flex flex-wrap gap-3 my-4">
       {% if page.github_link %}
-      <a href="{{ page.github_link }}" class="btn btn-outline-dark" target="_blank">
+      <a href="{{ page.github_link }}" class="btn btn-outline-dark github-btn" target="_blank">
         <i class="fab fa-github me-2"></i> GitHub Repository
       </a>
       {% endif %}
@@ -76,38 +76,7 @@ layout: page
         </a>
         {% endif %}
       </div>
-    </div>
-    
-    <div class="share-section mt-4 pt-3 border-top">
-      <div class="share-wrapper">
-        <span class="share-label text-muted me-2">Share this project:</span>
-        <span class="share-icons">
-          {% capture title %}{{ page.title }} - {{ site.title }}{% endcapture %}
-          {% assign url = page.url | absolute_url %}
-          
-          <!-- LinkedIn Share Link -->
-          <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ url | url_encode }}" data-toggle="tooltip" data-placement="top" title="LinkedIn" target="_blank" rel="noopener" aria-label="Share on LinkedIn" class="me-2">
-            <i class="fab fa-linkedin"></i>
-          </a>
-          
-          <!-- Twitter Share Link -->
-          <a href="https://twitter.com/intent/tweet?text={{ title | url_encode }}&url={{ url | url_encode }}" data-toggle="tooltip" data-placement="top" title="Twitter" target="_blank" rel="noopener" aria-label="Share on Twitter" class="me-2">
-            <i class="fab fa-twitter"></i>
-          </a>
-          
-          <!-- Facebook Share Link -->
-          <a href="https://www.facebook.com/sharer/sharer.php?u={{ url | url_encode }}" data-toggle="tooltip" data-placement="top" title="Facebook" target="_blank" rel="noopener" aria-label="Share on Facebook" class="me-2">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-        </span>
-      </div>
-      
-      <div class="mt-3 text-center">
-        <a href="{{ '/projects/' | relative_url }}" class="btn btn-sm btn-outline-secondary">
-          <i class="fas fa-th me-1"></i> View All Projects
-        </a>
-      </div>
-    </div>
+    </div>  
   </div>
   
 </article>
@@ -156,14 +125,99 @@ layout: page
   }
   
   .btn {
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 1.2rem;
     border-radius: 0.375rem;
+    font-weight: 500;
     transition: all 0.2s ease;
   }
   
-  .btn-outline-dark:hover, 
+  /* Primary button styles */
+  .btn-primary {
+    box-shadow: 0 2px 5px rgba(0,123,255,0.2);
+  }
+  
+  .btn-primary:hover {
+    background-color: var(--primary-color, #0069d9) !important;
+    border-color: var(--primary-color, #0062cc) !important;
+    color: #fff !important;
+    box-shadow: 0 4px 8px rgba(0,123,255,0.3);
+    transform: translateY(-1px);
+  }
+  
+  /* GitHub button styles */
+  .github-btn {
+    font-weight: 500;
+  }
+  
+  .github-btn:hover {
+    transform: translateY(-1px);
+    background-color: rgba(33, 37, 41, 0.1) !important;
+  }
+  
+  /* Outline buttons hover effects */
+  .btn-outline-dark:hover {
+    background-color: rgba(33, 37, 41, 0.1) !important;
+    color: #212529 !important;
+    border-color: #212529 !important;
+    transform: translateY(-1px);
+  }
+  
   .btn-outline-primary:hover {
-    transform: translateY(-2px);
+    background-color: rgba(0, 123, 255, 0.1) !important;
+    color: var(--primary-color, #007bff) !important;
+    border-color: var(--primary-color, #007bff) !important;
+    transform: translateY(-1px);
+  }
+  
+  .btn-outline-secondary:hover {
+    background-color: rgba(108, 117, 125, 0.1) !important;
+    color: #6c757d !important;
+    border-color: #6c757d !important;
+    transform: translateY(-1px);
+  }
+  
+  /* Dark mode button adjustments */
+  html[data-mode="dark"] .btn-primary {
+    box-shadow: 0 2px 5px rgba(0,123,255,0.3);
+  }
+  
+  html[data-mode="dark"] .btn-primary:hover {
+    box-shadow: 0 4px 8px rgba(0,123,255,0.4);
+  }
+  
+  html[data-mode="dark"] .btn-outline-dark {
+    color: #dee2e6;
+    border-color: #dee2e6;
+  }
+  
+  html[data-mode="dark"] .btn-outline-dark:hover {
+    background-color: rgba(222, 226, 230, 0.1) !important;
+    color: #dee2e6 !important;
+    border-color: #dee2e6 !important;
+  }
+  
+  html[data-mode="dark"] .btn-outline-secondary {
+    color: #adb5bd;
+    border-color: #adb5bd;
+  }
+  
+  html[data-mode="dark"] .btn-outline-secondary:hover {
+    background-color: rgba(173, 181, 189, 0.1) !important;
+    color: #adb5bd !important;
+    border-color: #adb5bd !important;
+  }
+  
+  /* GitHub button in dark mode */
+  html[data-mode="dark"] .github-btn {
+    color: #ffffff;
+    background-color: #333;
+    border-color: #444;
+  }
+  
+  html[data-mode="dark"] .github-btn:hover {
+    background-color: #444 !important;
+    color: #ffffff !important;
+    border-color: #555 !important;
   }
   
   .btn-primary {
@@ -172,7 +226,32 @@ layout: page
   
   .btn-primary:hover {
     box-shadow: 0 4px 8px rgba(0,123,255,0.3);
-    transform: translateY(-2px);
+    transform: translateY(-1px);
+  }
+  
+  /* Outline buttons hover effects */
+  .btn-outline-dark:hover, 
+  .btn-outline-primary:hover,
+  .btn-outline-secondary:hover {
+    transform: translateY(-1px);
+  }
+  
+  /* Dark mode specific adjustments */
+  html[data-mode="dark"] .btn-primary {
+    box-shadow: 0 2px 5px rgba(0,123,255,0.3);
+  }
+  
+  html[data-mode="dark"] .btn-primary:hover {
+    box-shadow: 0 4px 8px rgba(0,123,255,0.4);
+  }
+  
+  html[data-mode="dark"] .btn-outline-secondary {
+    color: #adb5bd;
+    border-color: #adb5bd;
+  }
+  
+  html[data-mode="dark"] .btn-outline-secondary:hover {
+    background-color: rgba(173, 181, 189, 0.1) !important;
   }
   
   .share-wrapper {
@@ -186,7 +265,6 @@ layout: page
   .share-icons a {
     font-size: 1.2rem;
     color: var(--text-muted, #6c757d);
-    transition: color 0.2s ease, transform 0.2s ease;
     width: 36px;
     height: 36px;
     display: inline-flex;
@@ -194,12 +272,13 @@ layout: page
     justify-content: center;
     border-radius: 50%;
     background-color: rgba(0,0,0,0.03);
+    transition: all 0.2s ease;
   }
   
   .share-icons a:hover {
     color: var(--primary-color, #007bff);
-    transform: translateY(-2px);
     background-color: rgba(0,0,0,0.05);
+    transform: translateY(-2px);
   }
   
   /* Specific share button colors */
@@ -213,6 +292,15 @@ layout: page
   
   .share-icons a:hover .fa-facebook-f {
     color: #4267B2;
+  }
+  
+  /* Dark mode share icons */
+  html[data-mode="dark"] .share-icons a {
+    background-color: rgba(255,255,255,0.05);
+  }
+  
+  html[data-mode="dark"] .share-icons a:hover {
+    background-color: rgba(255,255,255,0.1);
   }
   
   .share-section {
@@ -240,10 +328,17 @@ layout: page
     border-color: #dee2e6;
   }
   
-  html[data-mode="dark"] .btn-outline-dark:hover {
-    color: #212529;
-    background-color: #dee2e6;
-    border-color: #dee2e6;
+  /* New styles for GitHub button in dark mode */
+  html[data-mode="dark"] .github-btn {
+    color: #ffffff !important; /* Always white text in dark mode */
+    background-color: #333 !important; /* Dark background */
+    border-color: #444 !important;
+  }
+  
+  html[data-mode="dark"] .github-btn:hover {
+    background-color: #444 !important;
+    color: #ffffff !important;
+    border-color: #555 !important;
   }
   
   html[data-mode="dark"] .project-content h1, 
@@ -258,5 +353,41 @@ layout: page
   
   html[data-mode="dark"] .share-icons a:hover {
     background-color: rgba(255,255,255,0.1);
+  }
+
+  /* GitHub button styles - Light Mode */
+  .github-btn {
+    font-weight: 500;
+    color: #24292e;
+    background-color: #f6f8fa;
+    border-color: #e1e4e8;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .github-btn:hover {
+    color: #24292e !important;
+    background-color: #e6ebf1 !important;
+    border-color: #d1d5da !important;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  }
+
+  .github-btn .fab.fa-github {
+    font-size: 1.1em;
+  }
+
+  /* GitHub button in dark mode */
+  html[data-mode="dark"] .github-btn {
+    color: #f0f6fc !important;
+    background-color: #21262d !important;
+    border-color: #30363d !important;
+  }
+
+  html[data-mode="dark"] .github-btn:hover {
+    background-color: #30363d !important;
+    border-color: #8b949e !important;
+    color: #f0f6fc !important;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.2);
   }
 </style>
