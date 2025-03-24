@@ -36,21 +36,21 @@ layout: page
     {% endif %}
     
     <br>
-    <div class="project-links d-flex flex-wrap gap-3 my-4">
+    <div class="project-links d-flex flex-wrap gap-4 my-4">
       {% if page.github_link %}
-      <a href="{{ page.github_link }}" class="btn btn-outline-dark github-btn" target="_blank">
+      <a href="{{ page.github_link }}" class="btn btn-outline-dark github-btn me-2" target="_blank">
         <i class="fab fa-github me-2"></i> GitHub Repository
       </a>
       {% endif %}
       
       {% if page.live_link %}
-      <a href="{{ page.live_link }}" class="btn btn-primary" target="_blank">
+      <a href="{{ page.live_link }}" class="btn btn-primary me-2" target="_blank">
         <i class="fas fa-external-link-alt me-2"></i> Live Demo
       </a>
       {% endif %}
       
       {% if page.linkedin_post %}
-      <a href="{{ page.linkedin_post }}" class="btn btn-outline-primary" target="_blank">
+      <a href="{{ page.linkedin_post }}" class="btn btn-outline-primary me-2" target="_blank">
         <i class="fab fa-linkedin me-2"></i> LinkedIn Post
       </a>
       {% endif %}
