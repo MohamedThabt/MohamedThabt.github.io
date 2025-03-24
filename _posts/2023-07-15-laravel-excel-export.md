@@ -148,4 +148,7 @@ Problem 1
 - maatwebsite/excel 3.0.0 requires php ^7.1 -> your php version (8.2.12) does not satisfy that requirement.
 - maatwebsite/excel[3.0.1, ..., 3.1.25] require php ^7.0 -> your php version (8.2.12) does not satisfy
 ```
- ensure the GD extension is enabled in your php.ini file by removing the ; before the extension line.
+then: 
+ - ensure the GD extension is enabled in your php.ini file by removing the ; before the extension line.
+
+-  install package again 
