@@ -1,6 +1,6 @@
 ---
 title: "Service Oriented Architecture (SOA): Principles and Best Practices"
-date: 2025-04-20
+date: 2025-04-16
 description: "A comprehensive guide to understanding Service Oriented Architecture, its principles, benefits, challenges, and implementation best practices."
 categories: [Architecture, Software Design]
 tags: [SOA, Microservices, Enterprise Architecture,Architecture , Integration]
@@ -30,7 +30,7 @@ Using the **Service Pattern** provides the following benefits:
 
 ## **How to Implement the Service Pattern in Laravel**
 
-### **Generate a Service Class**
+### **1- Generate a Service Class**
 
 Create a **UserService** class using the following command:
 
@@ -40,7 +40,7 @@ php artisan make:class Services/UserService
 
 ---
 
-### **3️⃣ Define the Service Logic**
+### **2- Define the Service Logic**
 
 ```php
 namespace App\Services;
@@ -73,7 +73,7 @@ class UserService {
 
 ---
 
-### **4️⃣ Use the Service in a Controller**
+### **3- Use the Service in a Controller**
 
 There are three ways to inject a service into a controller:
 
@@ -267,7 +267,7 @@ class UserController extends Controller
 
     public function __construct(UserServiceInterface $userService)
     {
-        $this->userService = $userService;
+        this->userService = $userService;
     }
 
     public function store(Request $request)
