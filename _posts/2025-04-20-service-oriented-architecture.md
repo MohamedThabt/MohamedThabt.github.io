@@ -6,7 +6,6 @@ categories: [Architecture, Software Design]
 tags: [SOA, Microservices, Enterprise Architecture,Architecture , Integration]
 ---
 
-# Service Oriented Architecture (SOA): Principles and Best Practices
 ### **Controller Responsibilities & Service Pattern**
 
 ---
