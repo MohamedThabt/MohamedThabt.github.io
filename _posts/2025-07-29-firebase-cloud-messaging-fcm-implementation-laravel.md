@@ -1,6 +1,6 @@
 ---
 title: "Firebase Cloud Messaging (FCM) Implementation in Laravel - Complete Guide"
-date: 2025-12-21
+date: 2025-07-29
 description: "A comprehensive guide to implementing Firebase Cloud Messaging (FCM) push notifications in Laravel applications with best practices, security considerations, and multi-device support."
 categories: [Laravel, Firebase]
 tags: [Laravel, FCM, Push Notifications, Firebase, Mobile Development, API]
@@ -31,13 +31,13 @@ By the end of this guide, you will understand:
 
 ### Official Documentation
 
-- **Laravel FCM Notification Channel**: [https://laravel-notification-channels.com/fcm/#contents](https://laravel-notification-channels.com/fcm/#contents)
-- **Firebase Console**: [https://console.firebase.google.com/](https://console.firebase.google.com/)
+- [Laravel FCM Notification Channel](https://laravel-notification-channels.com/fcm/#contents)
+- [Firebase Console](https://console.firebase.google.com/)
 
 ### Video Tutorials
 
-- **Laravel Implementation**: [https://youtu.be/W9a3BWqnwhY?si=015F16SmXwl33kPK](https://youtu.be/W9a3BWqnwhY?si=015F16SmXwl33kPK)
-- **Firebase Setup**: [https://youtu.be/8KE7W6Ome1w?si=kSwhph-aLpzFRvUZ](https://youtu.be/8KE7W6Ome1w?si=kSwhph-aLpzFRvUZ)
+- [Laravel FCM Implementation Tutorial](https://youtu.be/W9a3BWqnwhY?si=015F16SmXwl33kPK)
+- [Firebase Setup Guide](https://youtu.be/8KE7W6Ome1w?si=kSwhph-aLpzFRvUZ)
 
 ## 🏗️ Step-by-Step Implementation
 
@@ -624,8 +624,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
 ### Packages Referenced
 
-- **laravel-notification-channels/fcm**: [https://laravel-notification-channels.com/fcm/#contents](https://laravel-notification-channels.com/fcm/#contents)
-- **kreait/laravel-firebase**: [GitHub Repository](https://github.com/kreait/laravel-firebase)
+- [Laravel FCM Notification Channel](https://laravel-notification-channels.com/fcm/#contents)
+- [Kreait Laravel Firebase](https://github.com/kreait/laravel-firebase)
 
 ### Community Resources
 
