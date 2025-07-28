@@ -58,10 +58,6 @@ The **Repository Pattern** in Laravel is a design pattern used to **abstract the
 
 ---
 
-![Repository Pattern Diagram](/assets/posts/repository-pattern.png)
-
----
-
 # EXAMPLE
 
 ### 1. **Create an Interface**
