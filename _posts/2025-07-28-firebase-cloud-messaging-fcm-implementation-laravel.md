@@ -1,6 +1,6 @@
 ---
 title: "Firebase Cloud Messaging (FCM) Implementation in Laravel - Complete Guide"
-date: 2025-07-29
+date: 2025-07-28
 description: "A comprehensive guide to implementing Firebase Cloud Messaging (FCM) push notifications in Laravel applications with best practices, security considerations, and multi-device support."
 categories: [Laravel, Firebase]
 tags: [Laravel, FCM, Push Notifications, Firebase, Mobile Development, API]
