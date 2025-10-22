@@ -20,6 +20,10 @@
 - type: linkedin
   icon: 'fab fa-linkedin'   # icons powered by <https://fontawesome.com/>
   url:  'https://www.linkedin.com/in/mohamed--thabet'                  # Fill with your Linkedin homepage
+
+- type: portfolio
+  icon: 'fas fa-briefcase'   # icons powered by <https://fontawesome.com/>
+  url:  'https://mohamedthabt.github.io/Portfolio'                     # Your portfolio website
   
 #
 # - type: stack-overflow
