@@ -16,11 +16,11 @@ timezone: Africa/Cairo
 
 title: Mohamed Thabet # the main title
 
-tagline: Backend Engineer # it will display as the subtitle
+tagline: Software Engineer # it will display as the subtitle
 
 description: >-
-  Mohamed Thabet's personal site showcasing backend engineering projects, technical articles,
-  and professional experience in software development. About me: I am a dedicated backend engineer
+  Mohamed Thabet's personal site showcasing software engineering projects, technical articles,
+  and professional experience in software development. About me: I am a dedicated software engineer
   passionate about creating efficient, scalable systems and continuously exploring new technologies.
 
 # Fill in the protocol & hostname for your site.
