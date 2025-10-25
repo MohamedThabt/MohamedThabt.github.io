@@ -21,7 +21,7 @@ In my journey to build LLM-powered systems, I realized there are three progressi
 
 Each level builds on the previous one — moving from simple content generation to intelligent reasoning and autonomous decision-making.
 
-## 1️ Generative AI (Gen AI)
+## 1️- Generative AI (Gen AI)
 
 ### Definition
 
@@ -42,7 +42,7 @@ At this level, your application interacts directly with the LLM through prompts.
 
 ---
 
-## 2️ AI Agents
+## 2️- AI Agents
 
 ### Definition
 
@@ -74,7 +74,7 @@ A research assistant app that:
 
 ---
 
-## 3️ Agentic AI
+## 3️- Agentic AI
 
 ### Definition
 
