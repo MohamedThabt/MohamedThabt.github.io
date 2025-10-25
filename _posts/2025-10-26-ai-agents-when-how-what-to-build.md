@@ -41,7 +41,7 @@ Example: Automating an onboarding workflow that checks identity, creates account
 
 ### Decision Flow
 
-![AI Agents Decision Flow](/assets/img/posts/ai-agents-decision-flow.png)
+![AI Agents Decision Flow](/assets/img/posts/image-1.png)
 _Decision tree to determine when to use AI Agents vs simpler approaches_
 
 ---
@@ -60,7 +60,7 @@ An AI Agent is composed of multiple cooperating pieces working in concert. Here'
 
 ### Components Architecture Diagram
 
-![AI Agent Components Architecture](/assets/img/posts/ai-agent-components-architecture.png)
+![AI Agent Components Architecture](/assets/img/posts/image-2.png)
 _Architecture showing how LLM, Control Loop, Memory, Prompt Templates, and Tools interact in an AI Agent system_
 
 ---
@@ -236,7 +236,7 @@ You **must** implement stopping conditions and limits to prevent runaway behavio
 
 ### Control Loop Diagram
 
-![AI Agent Control Loop](/assets/img/posts/ai-agent-control-loop.png)
+![AI Agent Control Loop](/assets/img/posts/image-3.png)
 _The agent control loop showing the decision cycle: Load State  Receive Input  Check Goal  Call LLM  Execute Tools  Update State  Repeat_
 
 ### Control Loop: Limits & Safety
