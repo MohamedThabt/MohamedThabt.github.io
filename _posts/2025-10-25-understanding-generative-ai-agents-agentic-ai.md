@@ -21,9 +21,6 @@ In my journey to build LLM-powered systems, I realized there are three progressi
 
 Each level builds on the previous one — moving from simple content generation to intelligent reasoning and autonomous decision-making.
 
-![The 3 Levels of AI in Modern Apps](/assets/img/posts/ai-3-levels.png){: width="700" height="400" }
-_Visualization of Generative AI, AI Agents, and Agentic AI progression_
-
 ## 1️ Generative AI (Gen AI)
 
 ### Definition
