@@ -11,7 +11,6 @@ meta:
     content: "Mohamed Thabet"
 ---
 
-# AI Agents — When, How, and What to Build
 
 Before diving into building an AI agent, it's critical to determine whether your problem actually *requires* one. Agents add complexity, cost, and potential failure points. If a simpler approach works, use it.
 
