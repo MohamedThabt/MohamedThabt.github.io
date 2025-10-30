@@ -57,7 +57,7 @@ DSPy (Declarative Self-improving Language Programs) is a framework that solves t
 
 To understand *why* DSPy is needed, look at what a "good" manual prompt contains. This example from OpenAI's GPT-4.1 Prompting Guide breaks down a single 1,800-token prompt:
 
-![A Prompt Example: SWE-Bench](/assets/img/posts/prompt-example-swe-bench.png)
+![A Prompt Example: SWE-Bench](/assets/img/posts/prompting guide.png)
 _From OpenAI's GPT-4.1 Prompting Guide, 1,806 tokens (~9k characters)_
 
 - **The Task:** 1%
@@ -209,7 +209,7 @@ Using the *same optimizer and training dataset*, DSPy can significantly improve 
 - **Llama 3.2 1B:** 84.0% → **91.0%**
 - **Phi-4-Mini 3.8B:** 86.0% → **95.0%**
 
-![DSPy Makes Model Switching Easy](/assets/img/posts/dspy-model-switching.png)
+![DSPy Makes Model Switching Easy](/assets/img/posts/optimization examples.png)
 _Using the same MIPRO optimizer & training dataset across different models_
 
 This optimization is achieved with minimal code, and the final optimized program (a JSON file) can be versioned, tracked in git, and loaded directly into production.
