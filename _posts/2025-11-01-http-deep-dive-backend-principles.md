@@ -44,6 +44,29 @@ An HTTP request consists of:
 2. **Headers** – Provide metadata about the request.
 3. **Body (optional)** – Contains data sent to the server (for `POST`, `PUT`, etc.).
 
+### Example HTTP Requests
+
+GET request (no body):
+
+```http
+GET /api/users?page=2 HTTP/1.1
+Host: api.example.com
+Accept: application/json
+User-Agent: MyClient/1.0
+```
+
+POST request (JSON body):
+
+```http
+POST /api/users HTTP/1.1
+Host: api.example.com
+Content-Type: application/json; charset=utf-8
+Authorization: Bearer <token>
+Content-Length: 38
+
+{"email":"alice@example.com","role":"admin"}
+```
+
 ### Common HTTP Headers
 
 | Header | Description | Example |
@@ -67,6 +90,34 @@ An HTTP request consists of:
 | `X-Content-Type-Options` | Prevents MIME sniffing. | `X-Content-Type-Options: nosniff` |
 
 ---
+
+## HTTP Response Components
+
+An HTTP response consists of:
+
+1. **Status Line** – Protocol version, status code, and reason phrase (e.g., `HTTP/1.1 200 OK`).
+2. **Headers** – Metadata about the response (content type, caching, cookies, etc.).
+3. **Body (optional)** – The returned content (JSON, HTML, file bytes, etc.).
+
+### Example HTTP Response
+
+```http
+HTTP/1.1 200 OK
+Date: Sat, 01 Nov 2025 12:00:00 GMT
+Content-Type: application/json; charset=utf-8
+Content-Length: 42
+ETag: "abc123"
+Set-Cookie: session_id=98a2f0c1; HttpOnly; Secure; Path=/; SameSite=Lax
+
+{"id":1,"name":"Alice"}
+```
+
+### Notes and Special Cases
+
+- Responses to `HEAD` and status codes `204 No Content`, `304 Not Modified`, and all `1xx` informational responses **MUST NOT** include a message body.
+- Redirects (`3xx`) often include a `Location` header indicating the next URL.
+- File downloads typically set `Content-Disposition` to suggest a filename.
+- Binary bodies should set the appropriate `Content-Type` (e.g., `application/pdf`, `image/png`).
 
 ## HTTP Extensibility
 
@@ -109,17 +160,55 @@ POST /api/restart
 
 ## Idempotent vs Non-Idempotent Methods
 
+Idempotency means that performing the same action repeatedly has the same effect as doing it once.
+
+- **Safe methods**: `GET`, `HEAD`, and `OPTIONS` are intended to be read-only (no side effects) though servers may still log or count them.
+- **Idempotent methods**: `GET`, `PUT`, `DELETE`, `HEAD`, `OPTIONS` should be implemented so that retries don't change state beyond the first success.
+- **Non-idempotent**: `POST` (and often `PATCH`) may create new resources or apply additional changes on each call.
+
 | Type | Methods | Description | Example |
 |------|---------|-------------|---------|
-| **Idempotent** | `GET`, `PUT`, `DELETE` | Multiple identical requests produce the same result. | `DELETE /user/1` twice still deletes only once. |
-| **Non-Idempotent** | `POST` | Each request may create a new resource or change state. | Two `POST /users` calls create two users. |
+| Safe & Idempotent | `GET`, `HEAD`, `OPTIONS` | No resource modification expected. | `GET /users/1` for the same representation. |
+| Idempotent (not safe) | `PUT`, `DELETE` | Same call repeated leads to the same final state. | `PUT /users/1` with the same body overwrites to the same value; repeated `DELETE /users/1` still results in no user. |
+| Non-Idempotent | `POST` (often `PATCH`) | Repeating may create or mutate multiple times. | Two `POST /orders` calls create two orders. |
+
+Practical guidance:
+
+- Implement retries for idempotent operations transparently at clients/gateways.
+- For `POST` endpoints that must be retryable (e.g., payments), use an **Idempotency-Key** header and deduplicate on the server.
+- Document whether `PATCH` is idempotent in your API; behavior varies by design.
 
 ---
 
 ## OPTIONS Method & CORS
 
-- The `OPTIONS` method is used to **check allowed operations** before sending the actual request.
-- It's essential for **CORS (Cross-Origin Resource Sharing)**.
+`OPTIONS` serves two common purposes:
+
+1. Discover server capabilities for a resource (allowed methods, headers).
+2. Handle **CORS preflight** requests from browsers.
+
+### CORS Preflight Request
+
+Browser sends (to the target origin):
+
+```http
+OPTIONS /api/resource HTTP/1.1
+Origin: https://app.example.com
+Access-Control-Request-Method: POST
+Access-Control-Request-Headers: Authorization, Content-Type
+```
+
+Server responds with what is allowed:
+
+```http
+HTTP/1.1 204 No Content
+Access-Control-Allow-Origin: https://app.example.com
+Access-Control-Allow-Methods: GET, POST
+Access-Control-Allow-Headers: Authorization, Content-Type
+Access-Control-Max-Age: 3600
+```
+
+If the preflight allows it, the browser proceeds with the actual request.
 
 ---
 
@@ -136,6 +225,13 @@ Access-Control-Allow-Headers: Content-Type, Authorization
 ```
 
 Without correct CORS headers, browsers will block requests from other domains.
+
+Additional notes:
+
+- **Simple requests** (GET, HEAD, POST with `Content-Type` of `application/x-www-form-urlencoded`, `multipart/form-data`, or `text/plain` and limited headers) skip preflight.
+- To send cookies/credentials, the server must set `Access-Control-Allow-Credentials: true` and the response must use a specific origin (no `*`). Client must use `fetch(..., { credentials: "include" })`.
+- Use `Vary: Origin` when responses differ per origin to ensure proper caching behavior at CDNs/proxies.
+- `Access-Control-Max-Age` allows caching of preflight results to reduce latency.
 
 ---
 
@@ -191,6 +287,13 @@ Content-Type: application/json
 Content-Language: en-US
 ```
 
+Notes:
+
+- Clients can provide preferences using quality weights (q-values): `Accept: application/json; q=1.0, text/html; q=0.8`.
+- Content negotiation can be **server-driven** (server picks best match from headers) or **agent-driven** (client chooses among variants, e.g., via links).
+- Other negotiable dimensions include `Accept-Charset` and `Accept-Encoding`.
+- When serving different representations, include `Vary` (e.g., `Vary: Accept, Accept-Language`) to keep intermediaries caching correctly.
+
 ---
 
 ## HTTP Compression
@@ -217,6 +320,13 @@ Connection: keep-alive
 Keep-Alive: timeout=5, max=100
 ```
 
+More details:
+
+- Persistent connections avoid the cost of repeated TCP/TLS handshakes and improve latency via connection reuse (a.k.a. connection pooling).
+- `Keep-Alive` is advisory; servers may still close idle connections at any time. Clients should retry transparently.
+- HTTP/1.1 supports pipelining in theory but it is rarely used due to head-of-line blocking.
+- With HTTP/2 and HTTP/3, a single connection can **multiplex** many concurrent streams; explicit `Keep-Alive` headers are unnecessary, but connection reuse remains critical for performance.
+
 ---
 
 ## Multipart Data & Chunked Transfer
@@ -232,6 +342,43 @@ Content-Type: multipart/form-data; boundary=---12345
 ```http
 Transfer-Encoding: chunked
 ```
+
+Examples:
+
+Multipart body (two fields + one file):
+
+```http
+POST /upload HTTP/1.1
+Host: files.example.com
+Content-Type: multipart/form-data; boundary=---12345
+
+---12345
+Content-Disposition: form-data; name="description"
+
+Holiday photo
+---12345
+Content-Disposition: form-data; name="photo"; filename="beach.png"
+Content-Type: image/png
+
+<binary bytes>
+---12345--
+```
+
+Chunked body (sizes are hex):
+
+```http
+HTTP/1.1 200 OK
+Transfer-Encoding: chunked
+
+4\r\n
+Wiki\r\n
+5\r\n
+pedia\r\n
+0\r\n
+\r\n
+```
+
+With chunked encoding, optional **trailers** can follow the final `0` chunk if `Trailer`/`TE: trailers` are used.
 
 ---
 
@@ -250,6 +397,19 @@ https://example.com
 ```
 
 All data exchanged is encrypted and protected from eavesdropping.
+
+How HTTPS works (simplified):
+
+1. Client initiates a TLS handshake (ClientHello with supported versions/ciphers and SNI for the hostname).
+2. Server responds with its certificate chain and parameters.
+3. Client validates the certificate chain against trusted roots and hostname; if valid, both sides derive shared keys.
+4. An encrypted channel is established and HTTP messages flow over it.
+
+Operational notes:
+
+- Use strong modern TLS versions (TLS 1.2+) and disable legacy ciphers.
+- Configure HSTS to force HTTPS in browsers: `Strict-Transport-Security: max-age=31536000; includeSubDomains`.
+- Certificates can be automated via ACME (e.g., Let’s Encrypt). Rotate before expiry.
 
 ---
 
